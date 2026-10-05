@@ -27,3 +27,8 @@ func (s *MaestrosServer) GetPersona(ctx context.Context, in *maestros.GetPersona
 	l := logic.NewGetPersonaLogic(ctx, s.svcCtx)
 	return l.GetPersona(in)
 }
+
+func (s *MaestrosServer) GetEstudiante(ctx context.Context, in *maestros.GetEstudianteRequest) (*maestros.GetEstudianteResponse, error) {
+	l := logic.NewGetEstudianteLogic(ctx, s.svcCtx)
+	return l.GetEstudiante(in)
+}

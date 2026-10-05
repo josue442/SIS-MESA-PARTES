@@ -486,3 +486,23 @@ type ValidateTokenResponse struct {
 	Username string `json:"username"`
 	Role     string `json:"role"`
 }
+
+type EstudianteDTO struct {
+	Id                  string     `json:"id"`
+	PersonaId           string     `json:"persona_id"`
+	CodigoInstitucional string     `json:"codigo_institucional"`
+	CodigoSiagie        string     `json:"codigo_siagie"`
+	EstadoAcademico     string     `json:"estado_academico"`
+	CreatedAt           string     `json:"created_at"`
+	UpdatedAt           string     `json:"updated_at"`
+	Persona             PersonaDTO `json:"persona"`
+}
+
+type GetEstudianteRequest struct {
+	Authorization string `header:"Authorization,optional"`
+	Id            string `path:"id"`
+}
+
+type GetEstudianteResponse struct {
+	Estudiante EstudianteDTO `json:"estudiante"`
+}

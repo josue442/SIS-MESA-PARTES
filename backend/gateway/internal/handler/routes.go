@@ -79,6 +79,11 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Path:    "/api/personas/:id",
 				Handler: GetPersonaHandler(serverCtx),
 			},
+			{
+				Method:  http.MethodGet,
+				Path:    "/api/estudiantes/:id",
+				Handler: GetEstudianteHandler(serverCtx),
+			},
 		},
 	)
 

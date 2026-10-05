@@ -13,9 +13,10 @@ import (
 )
 
 type ServiceContext struct {
-	Config            config.Config
-	DB                *pgxpool.Pool
-	PersonaRepository *repository.PersonaRepository
+	Config               config.Config
+	DB                   *pgxpool.Pool
+	PersonaRepository    *repository.PersonaRepository
+	EstudianteRepository *repository.EstudianteRepository
 }
 
 func NewServiceContext(c config.Config) *ServiceContext {
@@ -31,7 +32,10 @@ func NewServiceContext(c config.Config) *ServiceContext {
 
 	dbConfig, err := pgxpool.ParseConfig(dsn)
 	if err != nil {
-		log.Fatalf("Error al parsear configuración PostgreSQL: %v", err)
+		log.Fatalf(
+			"Error al parsear configuración PostgreSQL: %v",
+			err,
+		)
 	}
 
 	dbConfig.MaxConns = 10
@@ -47,20 +51,34 @@ func NewServiceContext(c config.Config) *ServiceContext {
 
 	db, err := pgxpool.NewWithConfig(ctx, dbConfig)
 	if err != nil {
-		log.Fatalf("Error al inicializar PostgreSQL: %v", err)
+		log.Fatalf(
+			"Error al inicializar PostgreSQL: %v",
+			err,
+		)
 	}
 
 	if err := db.Ping(ctx); err != nil {
 		db.Close()
-		log.Fatalf("No se pudo conectar a maestros_db: %v", err)
+
+		log.Fatalf(
+			"No se pudo conectar a maestros_db: %v",
+			err,
+		)
 	}
 
 	log.Println("Conexión exitosa a maestros_db")
 
 	return &ServiceContext{
-		Config:            c,
-		DB:                db,
-		PersonaRepository: repository.NewPersonaRepository(db),
+		Config: c,
+		DB:     db,
+
+		PersonaRepository: repository.NewPersonaRepository(
+			db,
+		),
+
+		EstudianteRepository: repository.NewEstudianteRepository(
+			db,
+		),
 	}
 }
 

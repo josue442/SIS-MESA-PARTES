@@ -14,12 +14,16 @@ import (
 )
 
 type (
-	GetPersonaRequest  = maestros.GetPersonaRequest
-	GetPersonaResponse = maestros.GetPersonaResponse
-	Persona            = maestros.Persona
+	Estudiante            = maestros.Estudiante
+	GetEstudianteRequest  = maestros.GetEstudianteRequest
+	GetEstudianteResponse = maestros.GetEstudianteResponse
+	GetPersonaRequest     = maestros.GetPersonaRequest
+	GetPersonaResponse    = maestros.GetPersonaResponse
+	Persona               = maestros.Persona
 
 	Maestros interface {
 		GetPersona(ctx context.Context, in *GetPersonaRequest, opts ...grpc.CallOption) (*GetPersonaResponse, error)
+		GetEstudiante(ctx context.Context, in *GetEstudianteRequest, opts ...grpc.CallOption) (*GetEstudianteResponse, error)
 	}
 
 	defaultMaestros struct {
@@ -36,4 +40,9 @@ func NewMaestros(cli zrpc.Client) Maestros {
 func (m *defaultMaestros) GetPersona(ctx context.Context, in *GetPersonaRequest, opts ...grpc.CallOption) (*GetPersonaResponse, error) {
 	client := maestros.NewMaestrosClient(m.cli.Conn())
 	return client.GetPersona(ctx, in, opts...)
+}
+
+func (m *defaultMaestros) GetEstudiante(ctx context.Context, in *GetEstudianteRequest, opts ...grpc.CallOption) (*GetEstudianteResponse, error) {
+	client := maestros.NewMaestrosClient(m.cli.Conn())
+	return client.GetEstudiante(ctx, in, opts...)
 }

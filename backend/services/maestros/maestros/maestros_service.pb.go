@@ -163,7 +163,108 @@ func (x *Persona) GetUpdatedAt() string {
 	return ""
 }
 
-// Consulta una persona mediante su UUID institucional.
+// Estudiante representa la información académica maestra
+// asociada a una Persona institucional.
+type Estudiante struct {
+	state               protoimpl.MessageState `protogen:"open.v1"`
+	Id                  string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	PersonaId           string                 `protobuf:"bytes,2,opt,name=persona_id,json=personaId,proto3" json:"persona_id,omitempty"`
+	CodigoInstitucional string                 `protobuf:"bytes,3,opt,name=codigo_institucional,json=codigoInstitucional,proto3" json:"codigo_institucional,omitempty"`
+	CodigoSiagie        string                 `protobuf:"bytes,4,opt,name=codigo_siagie,json=codigoSiagie,proto3" json:"codigo_siagie,omitempty"`
+	EstadoAcademico     string                 `protobuf:"bytes,5,opt,name=estado_academico,json=estadoAcademico,proto3" json:"estado_academico,omitempty"`
+	CreatedAt           string                 `protobuf:"bytes,6,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt           string                 `protobuf:"bytes,7,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	Persona             *Persona               `protobuf:"bytes,8,opt,name=persona,proto3" json:"persona,omitempty"`
+	unknownFields       protoimpl.UnknownFields
+	sizeCache           protoimpl.SizeCache
+}
+
+func (x *Estudiante) Reset() {
+	*x = Estudiante{}
+	mi := &file_maestros_service_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Estudiante) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Estudiante) ProtoMessage() {}
+
+func (x *Estudiante) ProtoReflect() protoreflect.Message {
+	mi := &file_maestros_service_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Estudiante.ProtoReflect.Descriptor instead.
+func (*Estudiante) Descriptor() ([]byte, []int) {
+	return file_maestros_service_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *Estudiante) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *Estudiante) GetPersonaId() string {
+	if x != nil {
+		return x.PersonaId
+	}
+	return ""
+}
+
+func (x *Estudiante) GetCodigoInstitucional() string {
+	if x != nil {
+		return x.CodigoInstitucional
+	}
+	return ""
+}
+
+func (x *Estudiante) GetCodigoSiagie() string {
+	if x != nil {
+		return x.CodigoSiagie
+	}
+	return ""
+}
+
+func (x *Estudiante) GetEstadoAcademico() string {
+	if x != nil {
+		return x.EstadoAcademico
+	}
+	return ""
+}
+
+func (x *Estudiante) GetCreatedAt() string {
+	if x != nil {
+		return x.CreatedAt
+	}
+	return ""
+}
+
+func (x *Estudiante) GetUpdatedAt() string {
+	if x != nil {
+		return x.UpdatedAt
+	}
+	return ""
+}
+
+func (x *Estudiante) GetPersona() *Persona {
+	if x != nil {
+		return x.Persona
+	}
+	return nil
+}
+
 type GetPersonaRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
@@ -173,7 +274,7 @@ type GetPersonaRequest struct {
 
 func (x *GetPersonaRequest) Reset() {
 	*x = GetPersonaRequest{}
-	mi := &file_maestros_service_proto_msgTypes[1]
+	mi := &file_maestros_service_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -185,7 +286,7 @@ func (x *GetPersonaRequest) String() string {
 func (*GetPersonaRequest) ProtoMessage() {}
 
 func (x *GetPersonaRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_maestros_service_proto_msgTypes[1]
+	mi := &file_maestros_service_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -198,7 +299,7 @@ func (x *GetPersonaRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetPersonaRequest.ProtoReflect.Descriptor instead.
 func (*GetPersonaRequest) Descriptor() ([]byte, []int) {
-	return file_maestros_service_proto_rawDescGZIP(), []int{1}
+	return file_maestros_service_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *GetPersonaRequest) GetId() string {
@@ -217,7 +318,7 @@ type GetPersonaResponse struct {
 
 func (x *GetPersonaResponse) Reset() {
 	*x = GetPersonaResponse{}
-	mi := &file_maestros_service_proto_msgTypes[2]
+	mi := &file_maestros_service_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -229,7 +330,7 @@ func (x *GetPersonaResponse) String() string {
 func (*GetPersonaResponse) ProtoMessage() {}
 
 func (x *GetPersonaResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_maestros_service_proto_msgTypes[2]
+	mi := &file_maestros_service_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -242,12 +343,100 @@ func (x *GetPersonaResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetPersonaResponse.ProtoReflect.Descriptor instead.
 func (*GetPersonaResponse) Descriptor() ([]byte, []int) {
-	return file_maestros_service_proto_rawDescGZIP(), []int{2}
+	return file_maestros_service_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *GetPersonaResponse) GetPersona() *Persona {
 	if x != nil {
 		return x.Persona
+	}
+	return nil
+}
+
+type GetEstudianteRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetEstudianteRequest) Reset() {
+	*x = GetEstudianteRequest{}
+	mi := &file_maestros_service_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetEstudianteRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetEstudianteRequest) ProtoMessage() {}
+
+func (x *GetEstudianteRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_maestros_service_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetEstudianteRequest.ProtoReflect.Descriptor instead.
+func (*GetEstudianteRequest) Descriptor() ([]byte, []int) {
+	return file_maestros_service_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *GetEstudianteRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+type GetEstudianteResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Estudiante    *Estudiante            `protobuf:"bytes,1,opt,name=estudiante,proto3" json:"estudiante,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetEstudianteResponse) Reset() {
+	*x = GetEstudianteResponse{}
+	mi := &file_maestros_service_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetEstudianteResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetEstudianteResponse) ProtoMessage() {}
+
+func (x *GetEstudianteResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_maestros_service_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetEstudianteResponse.ProtoReflect.Descriptor instead.
+func (*GetEstudianteResponse) Descriptor() ([]byte, []int) {
+	return file_maestros_service_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *GetEstudianteResponse) GetEstudiante() *Estudiante {
+	if x != nil {
+		return x.Estudiante
 	}
 	return nil
 }
@@ -273,14 +462,34 @@ const file_maestros_service_proto_rawDesc = "" +
 	"\n" +
 	"created_at\x18\f \x01(\tR\tcreatedAt\x12\x1d\n" +
 	"\n" +
-	"updated_at\x18\r \x01(\tR\tupdatedAt\"#\n" +
+	"updated_at\x18\r \x01(\tR\tupdatedAt\"\xa9\x02\n" +
+	"\n" +
+	"Estudiante\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1d\n" +
+	"\n" +
+	"persona_id\x18\x02 \x01(\tR\tpersonaId\x121\n" +
+	"\x14codigo_institucional\x18\x03 \x01(\tR\x13codigoInstitucional\x12#\n" +
+	"\rcodigo_siagie\x18\x04 \x01(\tR\fcodigoSiagie\x12)\n" +
+	"\x10estado_academico\x18\x05 \x01(\tR\x0festadoAcademico\x12\x1d\n" +
+	"\n" +
+	"created_at\x18\x06 \x01(\tR\tcreatedAt\x12\x1d\n" +
+	"\n" +
+	"updated_at\x18\a \x01(\tR\tupdatedAt\x12+\n" +
+	"\apersona\x18\b \x01(\v2\x11.maestros.PersonaR\apersona\"#\n" +
 	"\x11GetPersonaRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"A\n" +
 	"\x12GetPersonaResponse\x12+\n" +
-	"\apersona\x18\x01 \x01(\v2\x11.maestros.PersonaR\apersona2S\n" +
+	"\apersona\x18\x01 \x01(\v2\x11.maestros.PersonaR\apersona\"&\n" +
+	"\x14GetEstudianteRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"M\n" +
+	"\x15GetEstudianteResponse\x124\n" +
+	"\n" +
+	"estudiante\x18\x01 \x01(\v2\x14.maestros.EstudianteR\n" +
+	"estudiante2\xa5\x01\n" +
 	"\bMaestros\x12G\n" +
 	"\n" +
-	"GetPersona\x12\x1b.maestros.GetPersonaRequest\x1a\x1c.maestros.GetPersonaResponseB\fZ\n" +
+	"GetPersona\x12\x1b.maestros.GetPersonaRequest\x1a\x1c.maestros.GetPersonaResponse\x12P\n" +
+	"\rGetEstudiante\x12\x1e.maestros.GetEstudianteRequest\x1a\x1f.maestros.GetEstudianteResponseB\fZ\n" +
 	"./maestrosb\x06proto3"
 
 var (
@@ -295,21 +504,28 @@ func file_maestros_service_proto_rawDescGZIP() []byte {
 	return file_maestros_service_proto_rawDescData
 }
 
-var file_maestros_service_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
+var file_maestros_service_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_maestros_service_proto_goTypes = []any{
-	(*Persona)(nil),            // 0: maestros.Persona
-	(*GetPersonaRequest)(nil),  // 1: maestros.GetPersonaRequest
-	(*GetPersonaResponse)(nil), // 2: maestros.GetPersonaResponse
+	(*Persona)(nil),               // 0: maestros.Persona
+	(*Estudiante)(nil),            // 1: maestros.Estudiante
+	(*GetPersonaRequest)(nil),     // 2: maestros.GetPersonaRequest
+	(*GetPersonaResponse)(nil),    // 3: maestros.GetPersonaResponse
+	(*GetEstudianteRequest)(nil),  // 4: maestros.GetEstudianteRequest
+	(*GetEstudianteResponse)(nil), // 5: maestros.GetEstudianteResponse
 }
 var file_maestros_service_proto_depIdxs = []int32{
-	0, // 0: maestros.GetPersonaResponse.persona:type_name -> maestros.Persona
-	1, // 1: maestros.Maestros.GetPersona:input_type -> maestros.GetPersonaRequest
-	2, // 2: maestros.Maestros.GetPersona:output_type -> maestros.GetPersonaResponse
-	2, // [2:3] is the sub-list for method output_type
-	1, // [1:2] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	0, // 0: maestros.Estudiante.persona:type_name -> maestros.Persona
+	0, // 1: maestros.GetPersonaResponse.persona:type_name -> maestros.Persona
+	1, // 2: maestros.GetEstudianteResponse.estudiante:type_name -> maestros.Estudiante
+	2, // 3: maestros.Maestros.GetPersona:input_type -> maestros.GetPersonaRequest
+	4, // 4: maestros.Maestros.GetEstudiante:input_type -> maestros.GetEstudianteRequest
+	3, // 5: maestros.Maestros.GetPersona:output_type -> maestros.GetPersonaResponse
+	5, // 6: maestros.Maestros.GetEstudiante:output_type -> maestros.GetEstudianteResponse
+	5, // [5:7] is the sub-list for method output_type
+	3, // [3:5] is the sub-list for method input_type
+	3, // [3:3] is the sub-list for extension type_name
+	3, // [3:3] is the sub-list for extension extendee
+	0, // [0:3] is the sub-list for field type_name
 }
 
 func init() { file_maestros_service_proto_init() }
@@ -323,7 +539,7 @@ func file_maestros_service_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_maestros_service_proto_rawDesc), len(file_maestros_service_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   3,
+			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

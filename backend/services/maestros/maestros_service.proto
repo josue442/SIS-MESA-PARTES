@@ -26,7 +26,25 @@ message Persona {
   string updated_at = 13;
 }
 
-// Consulta una persona mediante su UUID institucional.
+// Estudiante representa la información académica maestra
+// asociada a una Persona institucional.
+message Estudiante {
+  string id = 1;
+  string persona_id = 2;
+
+  string codigo_institucional = 3;
+  string codigo_siagie = 4;
+
+  string estado_academico = 5;
+
+  string created_at = 6;
+  string updated_at = 7;
+
+  Persona persona = 8;
+}
+
+// ==================== PERSONAS ====================
+
 message GetPersonaRequest {
   string id = 1;
 }
@@ -35,6 +53,19 @@ message GetPersonaResponse {
   Persona persona = 1;
 }
 
+// ==================== ESTUDIANTES ====================
+
+message GetEstudianteRequest {
+  string id = 1;
+}
+
+message GetEstudianteResponse {
+  Estudiante estudiante = 1;
+}
+
 service Maestros {
   rpc GetPersona(GetPersonaRequest) returns (GetPersonaResponse);
+
+  rpc GetEstudiante(GetEstudianteRequest)
+      returns (GetEstudianteResponse);
 }

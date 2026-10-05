@@ -19,7 +19,8 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Maestros_GetPersona_FullMethodName = "/maestros.Maestros/GetPersona"
+	Maestros_GetPersona_FullMethodName    = "/maestros.Maestros/GetPersona"
+	Maestros_GetEstudiante_FullMethodName = "/maestros.Maestros/GetEstudiante"
 )
 
 // MaestrosClient is the client API for Maestros service.
@@ -27,6 +28,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type MaestrosClient interface {
 	GetPersona(ctx context.Context, in *GetPersonaRequest, opts ...grpc.CallOption) (*GetPersonaResponse, error)
+	GetEstudiante(ctx context.Context, in *GetEstudianteRequest, opts ...grpc.CallOption) (*GetEstudianteResponse, error)
 }
 
 type maestrosClient struct {
@@ -47,11 +49,22 @@ func (c *maestrosClient) GetPersona(ctx context.Context, in *GetPersonaRequest, 
 	return out, nil
 }
 
+func (c *maestrosClient) GetEstudiante(ctx context.Context, in *GetEstudianteRequest, opts ...grpc.CallOption) (*GetEstudianteResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetEstudianteResponse)
+	err := c.cc.Invoke(ctx, Maestros_GetEstudiante_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MaestrosServer is the server API for Maestros service.
 // All implementations must embed UnimplementedMaestrosServer
 // for forward compatibility.
 type MaestrosServer interface {
 	GetPersona(context.Context, *GetPersonaRequest) (*GetPersonaResponse, error)
+	GetEstudiante(context.Context, *GetEstudianteRequest) (*GetEstudianteResponse, error)
 	mustEmbedUnimplementedMaestrosServer()
 }
 
@@ -64,6 +77,9 @@ type UnimplementedMaestrosServer struct{}
 
 func (UnimplementedMaestrosServer) GetPersona(context.Context, *GetPersonaRequest) (*GetPersonaResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetPersona not implemented")
+}
+func (UnimplementedMaestrosServer) GetEstudiante(context.Context, *GetEstudianteRequest) (*GetEstudianteResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetEstudiante not implemented")
 }
 func (UnimplementedMaestrosServer) mustEmbedUnimplementedMaestrosServer() {}
 func (UnimplementedMaestrosServer) testEmbeddedByValue()                  {}
@@ -104,6 +120,24 @@ func _Maestros_GetPersona_Handler(srv interface{}, ctx context.Context, dec func
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Maestros_GetEstudiante_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetEstudianteRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MaestrosServer).GetEstudiante(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Maestros_GetEstudiante_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MaestrosServer).GetEstudiante(ctx, req.(*GetEstudianteRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Maestros_ServiceDesc is the grpc.ServiceDesc for Maestros service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -114,6 +148,10 @@ var Maestros_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetPersona",
 			Handler:    _Maestros_GetPersona_Handler,
+		},
+		{
+			MethodName: "GetEstudiante",
+			Handler:    _Maestros_GetEstudiante_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
