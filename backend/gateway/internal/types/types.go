@@ -166,6 +166,15 @@ type GetExpedienteResponse struct {
 	Expediente ExpedienteDTO `json:"expediente"`
 }
 
+type GetPersonaRequest struct {
+	Authorization string `header:"Authorization,optional"`
+	Id            string `path:"id"`
+}
+
+type GetPersonaResponse struct {
+	Persona PersonaDTO `json:"persona"`
+}
+
 type GetRolePermissionsRequest struct {
 	Authorization string `header:"Authorization,optional"`
 	Id            string `path:"id"`
@@ -317,6 +326,22 @@ type PermissionDTO struct {
 	Descripcion string `json:"descripcion"`
 	Modulo      string `json:"modulo"`
 	Estado      bool   `json:"estado"`
+}
+
+type PersonaDTO struct {
+	Id              string `json:"id"`
+	TipoDocumento   string `json:"tipo_documento"`
+	NumeroDocumento string `json:"numero_documento"`
+	Nombres         string `json:"nombres"`
+	ApellidoPaterno string `json:"apellido_paterno"`
+	ApellidoMaterno string `json:"apellido_materno"`
+	FechaNacimiento string `json:"fecha_nacimiento"`
+	Sexo            string `json:"sexo"`
+	CorreoPersonal  string `json:"correo_personal"`
+	Telefono        string `json:"telefono"`
+	Activo          bool   `json:"activo"`
+	CreatedAt       string `json:"created_at"`
+	UpdatedAt       string `json:"updated_at"`
 }
 
 type RechazarExpedienteRequest struct {
